@@ -1,0 +1,52 @@
+@model Category
+@{
+    ViewData["Title"] = "Edit Existing Category";
+}
+<partial name="~/Views/Shared/Common/_TitleNavigationPartial.cshtml"
+    model='("Edit A Category", "/", "Dashboard", "Category")'></partial>
+<div class="card">
+    <form asp-action="Edit" method="post">
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ParentId)
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <div class="card-body">
+            <div class="mb-3 row">
+                <label asp-for="Title" class="col-md-2 col-form-label"></label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" asp-for="Title"
+                        placeholder="Enter the title of the Category">
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label asp-for="MetaTitle" class="col-md-2 col-form-label"></label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" asp-for="MetaTitle"
+                        placeholder="Enter the Meta Title of the Category">
+                    <span asp-validation-for="MetaTitle" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label asp-for="Slug" class="col-md-2 col-form-label"></label>
+                <div class="col-md-10">
+                    <input class="form-control" type="text" asp-for="Slug" placeholder="Enter the Slug of the Category">
+                    <span asp-validation-for="Slug" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label asp-for="Content" class="col-md-2 col-form-label"></label>
+                <div class="col-md-10">
+                    <textarea class="form-control" style="resize: none;" asp-for="Content" rows="5"
+                        placeholder="Write about your Category..."></textarea>
+                    <span asp-validation-for="Content" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button class="btn btn-secondary">
+                <a asp-action="Lists" style="text-decoration: none;" class="text-white">Cancel</a>
+            </button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,61 @@
+@model List<Category>
+@{
+    ViewData["Title"] = "Category List";
+}
+<partial name="~/Views/Shared/Common/_TitleNavigationPartial.cshtml"
+    model='("Category List", "/", "Dashboard", "Lists")' />
+
+<div class="row">
+    <p class="col-12 text-end">
+        <a asp-action="Create" role="button" class="btn btn-info fs-5">Add New Category</a>
+    </p>
+</div>
+
+<div class="card p-2">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="thead-dark text-center">
+                    <tr>
+                        <th scope="col">Title</th>
+                        <th scope="col">Meta Title</th>
+                        <th scope="col">Slug</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center">
+                    @if (Model.Any())
+                    {
+                        @foreach (var category in Model)
+                        {
+                            <tr>
+                                <td>@category.Title</td>
+                                <td>@category.MetaTitle</td>
+                                <td>@category.Slug</td>
+                                <td>@category.Content</td>
+                                <td>
+                                    <div class="d-flex gap-2 align-items-center justify-content-center">
+                                        <a asp-action="Edit" asp-route-id="@category.Id" class="btn btn-primary">Edit</a>
+                                        <a asp-action="Details" asp-route-id="@category.Id" class="btn btn-info">View</a>
+                                        <form asp-action="Delete" asp-route-id="@category.Id">
+                                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are You Sure You want to Delete This Category?')">Delete</button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center text-danger fs-3">
+                                Ooops! No Categories Found
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

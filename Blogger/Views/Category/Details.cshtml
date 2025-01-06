@@ -1,0 +1,15 @@
+@model Category
+@{
+    ViewData["Title"] = "Category Details";
+}
+<partial name="~/Views/Shared/Common/_TitleNavigationPartial.cshtml" model='("Category Details", "/", "Dashboard", "Details")'/>
+<div class="container mt-5">
+    <div class="card" style="width: 24rem;">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Title</h5>
+            <p class="card-text"><strong>Meta Title:</strong> @Model.MetaTitle</p>
+            <p class="card-text"><strong>Slug:</strong> @Model.Slug</p>
+            <p class="card-text">@Model.Content</p>
+        </div>
+    </div>
+</div>
